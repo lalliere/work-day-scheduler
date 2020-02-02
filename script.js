@@ -2,7 +2,7 @@
 let date = moment().format('dddd, MMMM Do');
 $("#currentDay").html(date);
 
-
+//8AM (08:00) start, 4pm (16:00) finish
 for (let i = 8; i <= 16; i++) {
     let time = moment(i, "HH:mm").format("h:mm a");
 
@@ -39,14 +39,11 @@ for (let i = 8; i <= 16; i++) {
     `);
 }
 
-//on click of the save button, whatever is in the task column gets saved to local storage to be displayed even if the page is refreshed
+//on click of the save button, whatever is in the task column (the previous sibling of this row parent) gets saved to local storage to be displayed even if the page is refreshed
 $(document).on("click", ".saveBtn", function () {
-    let id = $(this)
-        .prev()
-        .attr("id");
-    let text = $(this)
-        .prev()
-        .val();
-    localStorage.setItem(id, text);
-    console.log(id, text);
+    let id = $(this).prev().attr("id");
+    let task = $(this).prev().val();
+
+    localStorage.setItem(id, task);
+    
 });
